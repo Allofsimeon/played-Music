@@ -1,0 +1,25 @@
+{
+  "name": "played",
+  "version": "1.0.0",
+  "description": "Played is a music project by Simeon ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "Simeon Fadahunsi",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "express-paginatorjs": "^1.0.1",
+    "express-session": "^1.17.1",
+    "js": "^0.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "nodemon": "^2.0.7",
+    "sqlite3": "^5.0.2"
+  }
+}

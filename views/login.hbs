@@ -1,0 +1,50 @@
+
+<div class="container mt-4 mb-4">
+  <div class="columns">
+      <div class="column col-6 text-head">
+          <h1 class="home-htext">Login <br> now!</h1>
+      </div>
+      <div class="column col-6 text-head" style="margin: auto;">
+        <form action="/login" method="POST" >
+          <div class="form-group" id="user-group" >
+            <label class="form-label" for="user">Username</label>
+            <input type="text" class="form-input" name="user">
+            <p class="form-input-hint" id="Usererror"> </p>
+          </div>
+          <div class="form-group" id="pwd-group">
+            <label class="form-label" for="pwd">Password</label>
+            <input type="password" class="form-input" name="pwd">
+            <p class="form-input-hint" id="Pwderror"> </p>
+          </div>
+          <button type="submit" class="btn btn-primary">Log in</button> 
+        </form>     
+        <div class="divider mab-2" style="margin:2em 0"></div>   
+        <p>
+          Don't have an account?
+        </p>     
+        <a class="creat-btn text-light" href="/register" >Create New Account</a>
+
+      </div>
+  </div>
+</div>
+
+<script>
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const error = urlParams.get('error');
+  if (error== "10"){
+    let errorString="Password is incorrect";
+    document.getElementById("Pwderror").innerText=errorString;
+
+    var element = document.getElementById("pwd-group");
+    element.classList.add("has-error");
+
+  }
+  else if(error=="12"){
+    let errorString="Username is incorrect";
+    document.getElementById("Usererror").innerText=errorString;
+
+    var element = document.getElementById("user-group");
+    element.classList.add("has-error");
+  }
+</script>

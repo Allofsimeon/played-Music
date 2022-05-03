@@ -1,0 +1,46 @@
+
+<div class="container" style="padding: 1rem 2rem;">
+    <form action="/account/search" method="get">
+        <div class="input-group">
+            <input type="text" name="q" placeholder="Search Playlist..." class="form-input input-lg" placeholder="Search Playlist">
+            <button class="btn btn-primary input-group-btn btn-lg">Search</button>
+        </div>
+    </form>
+    
+
+    <p>Want to create a new playlist?<a href="/account/create"> Create New Playlist</a></p> 
+
+        <h3 class="text-gray" id="empty"></h3>
+        <h5 class="mab-2 hidden" id="text">Select from the available playlists below: </h5>
+    <div class="columns" id="column">
+            {{#each rows}}
+                <div class="column col-3">
+                    <div class="card" style="width: 17rem;">
+                        <img src="/img/album_art/ag_gold.jpg" class="card-img-top" alt="Cover art">
+                        <div class="card-body">
+                            <a href="/account/playlist-detail/{{id}}">
+                                <h5 class="card-title">{{name}}</h5>
+                            </a>
+                            <span class="chip">{{status}} playlist</span>
+                        </div>
+                    </div>
+                </div>
+            {{/each}} 
+    </div>
+
+</div>
+
+
+<script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const error = urlParams.get('search');
+    if (error== "none"){
+        let errorString="There are no playlist with that name available";
+        document.getElementById("empty").innerText=errorString;
+        document.getElementById("empty").classList.add("mt-4");
+
+    var element = document.getElementById("column");
+    element.classList.add("hidden");
+    }
+</script>

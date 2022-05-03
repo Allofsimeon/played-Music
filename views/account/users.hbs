@@ -1,0 +1,52 @@
+<div class="container" style="padding: 1rem 2rem;">
+    <form action="/users/search" method="get">
+        <div class="input-group">
+            <input type="text" name="q" id="searchbar"  class="form-input input-lg" >
+            <button class="btn btn-primary input-group-btn btn-lg" id="searchbtn" value="{{string}}">Search</button>
+        </div>
+    </form>
+    <h3 class="text-gray" id="empty">
+
+    </h3>
+
+    <div class="hero bg-gray sidespace">
+        <div class="hero-body">
+            <h1 class="display-4"> Checkout other users </h1>
+            <p class="lead">Explore what other users are up to.</p>
+        </div>
+    </div>
+    
+    <div class="columns" id="column">
+            {{#each rows}}
+                <div class="column col-3">
+                    <div class="card" style="width: 17rem;">
+                        <img src="/img/album_art/ag_gold.jpg" class="card-img-top" alt="Cover art">
+                        <div class="card-body">
+                            <a href="/account/users/{{username}}">
+                                <h5 class="card-title">{{username}}</h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {{/each}} 
+    </div>
+
+</div>
+
+
+
+<script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const error = urlParams.get('search');
+    if (error== "none"){
+        let errorString="There is no user with that username";
+        document.getElementById("empty").innerText=errorString;
+        document.getElementById("empty").classList.add("mt-4");
+
+    var element = document.getElementById("column");
+    element.classList.add("hidden");
+    }
+
+
+</script>

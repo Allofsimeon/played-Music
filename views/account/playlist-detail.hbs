@@ -1,0 +1,47 @@
+<div class="hero bg-gray sidespace">
+    <div class="hero-body">
+        <h1 class="display-4"> {{PlaylistName}} </h1>
+    </div>
+</div>
+<div class="container" style="padding: 1rem 2rem;">
+    {{#if editAccess}}
+        <p>
+            <a href="/account/edit/{{PlaylistId}}"> Edit Playlist </a>
+        </p>
+
+        <p>
+            <a href="/account/delete/{{PlaylistId}}"> Delete Playlist</a>
+        </p> 
+    {{else}}
+        <p>
+            <a href="">Share Playlist</a>
+        </p> 
+    {{/if}}
+
+    <div class="columns">
+        {{#if rows}}
+            {{#each rows}}
+            <div class="column col-3">
+                <div class="card" style="width: 17rem;">
+                    <img src="{{album_art}}" class="card-img-top" alt="Cover art">
+                    <div class="card-body">
+                        <h5 class="card-title">{{music_name}}</h5>
+                        <p class="card-subtitle text-muted">
+                            {{artist_name}}
+                        </p>
+                        
+                    </div>
+                </div>
+            </div>
+        {{/each}} 
+        {{else}}
+            <p>No Songs in this playlist yet, sorry.</p>
+        {{/if}}
+
+        
+    </div>
+</div>
+
+<script>
+
+</script>

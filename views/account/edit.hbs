@@ -1,0 +1,23 @@
+Create Playlist with redirect to dashboard page
+
+
+
+<div class="container" style="padding: 1rem 2rem;">
+    <div class="columns">
+        <!-- form input control -->
+        <form action="/savePlaylist" method="POST">
+            <div class="form-group">
+            <label class="form-label" for="input-example-1">Name of Playlist:</label>
+            <input class="form-input" type="text" id="input-example-1" placeholder="Name of Playlist" name="playlistname">
+        </div>
+        <div class="form-group">
+            <label class="form-checkbox">
+                <input type="checkbox" name="privatecheck" checked="true" value="true">
+                <i class="form-icon"></i> Make Playlist Private
+            </label>
+        </div>
+        <button class="btn btn-primary input-group-btn" type="submit">Create Playlist</button>
+        </form>
+        
+    </div>
+</div>

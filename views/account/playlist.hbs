@@ -1,0 +1,128 @@
+{{#if UserList}}
+    <div class="hero bg-gray sidespace">
+        <div class="hero-body">
+            <h1 class="display-4"> Explore User Playlist from {{username}}</h1>
+            <p class="lead">Enjoy Good Music as Long as You Want.</p>
+        </div>
+    </div>
+{{else}}
+    <div class="hero bg-gray sidespace">
+        <div class="hero-body">
+            <h1 class="display-4"> Explore All Playlist </h1>
+            <p class="lead">Enjoy Good Music as Long as You Want.</p>
+        </div>
+    </div>
+{{/if}}
+
+<div class="container" style="padding: 1rem 2rem;">
+    <div class="toast toast-error hidden" id="Statuscolumn" >
+        <p id="empty"> </p>
+    </div>
+
+    <ul class="tab ">
+        <li class="tab-item active">
+            <button class="tabBtn btn" onclick="opentab(event,'all')"  id="dTab" >All Playlists</button>
+        </li>
+        {{#if UserList}}
+
+        {{else}}
+            <li class="tab-item">
+                <button class="tabBtn btn" onclick="opentab(event,'private')">Private Playlists</button>
+            </li>
+            <li class="tab-item">
+                <button  class="tabBtn btn" onclick="opentab(event,'public')">Public Playlists</button>
+            </li>
+        {{/if}}
+        
+    </ul>
+    
+
+    <div id="all" class="tabArea">
+        <div class="columns">
+                {{#each allPlaylist}}
+                    <div class="column col-3">
+                        <div class="card" style="width: 17rem;">
+                            <img src="/img/album_art/ag_gold.jpg" class="card-img-top" alt="Cover art">
+                            <div class="card-body">
+                                <a href="/account/playlist-detail/{{id}}">
+                                    <h5 class="card-title">{{name}}</h5>
+                                </a>                        
+                                <span class="chip">{{status}} playlist</span>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}} 
+        </div>
+    </div>
+
+    <div id="private" class="tabArea">
+        <div class="columns">
+                {{#each privatePlaylist}}
+                    <div class="column col-3">
+                        <div class="card" style="width: 17rem;">
+                            <img src="/img/album_art/ag_gold.jpg" class="card-img-top" alt="Cover art">
+                            <div class="card-body">
+                                <a href="/account/playlist-detail/{{id}}">
+                                    <h5 class="card-title">{{name}}</h5>
+                                </a>                        
+                                <span class="chip">{{status}} playlist</span>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}} 
+        </div>
+    </div>
+    <div id="public" class="tabArea">
+        <div class="columns">
+                {{#each publicPlaylist}}
+                    <div class="column col-3">
+                        <div class="card" style="width: 17rem;">
+                            <img src="/img/album_art/ag_gold.jpg" class="card-img-top" alt="Cover art">
+                            <div class="card-body">
+                                <a href="/account/playlist-detail/{{id}}">
+                                    <h5 class="card-title">{{name}}</h5>
+                                </a>                        
+                                <span class="chip">{{status}} playlist</span>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}} 
+        </div>
+    </div>
+</div>
+
+<script>
+
+    //JS for Filters
+    document.getElementById("dTab").click();
+    function opentab(evt, PlaylistType) {
+  // Declare all variables
+    var i, tabArea, tabBtn;
+
+    tabArea = document.getElementsByClassName("tabArea");
+    for (i = 0; i < tabArea.length; i++) {
+        tabArea[i].style.display = "none";
+    }
+
+    tabBtn = document.getElementsByClassName("tabBtn");
+    for (i = 0; i < tabBtn.length; i++) {
+        tabBtn[i].className = tabBtn[i].className.replace(" btn-primary", "");
+    }
+
+    document.getElementById(PlaylistType).style.display = "block";
+    evt.currentTarget.className += " btn-primary";
+    }
+
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const error = urlParams.get('delete');
+    if (error== "success"){
+        let errorString="Playlist Deleted";
+        document.getElementById("empty").innerText=errorString;
+        
+        var element = document.getElementById("Statuscolumn");
+        element.classList.remove("hidden");
+    }
+
+</script>

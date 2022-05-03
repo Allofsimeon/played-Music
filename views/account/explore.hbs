@@ -1,0 +1,63 @@
+
+<div class="hero bg-gray sidespace">
+    <div class="hero-body">
+        <h1 class="display-4"> Explore Several Sounds </h1>
+        <p class="lead">Enjoy Good Music as Long as You Want.</p>
+    </div>
+</div>
+<div class="container" style="padding: 1rem 2rem;">
+    <div class="toast mb-2 mt-2" id="toast">
+        <p id="responsemsg"> </p>
+    </div>
+    <div class="columns">
+        {{#each rows}}
+            <div class="column col-3">
+                <div class="card" style="width: 17rem;">
+                    <img src="{{album_art}}" class="card-img-top" alt="Cover art">
+                    <div class="card-body">
+                        <h5 class="card-title">{{music_name}}</h5>
+                        <p class="card-subtitle text-muted">
+                            {{artist_name}}
+                        </p>
+                        <div class="dropdown">
+                            <a href="#!" class="btn btn-link dropdown-toggle" tabindex="0">
+                                <i class="icon icon-plus"></i> Add to Playlist
+                            </a>
+                            <!-- menu component -->
+                            <ul class="menu">
+                                {{#each @root.playlist}}
+                                    <li>
+                                        <a href="/addtoplaylist/{{id}}/{{../id}}"> {{name}}</a>
+                                    </li>
+                                    
+                                {{/each}} 
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/each}} 
+    </div>
+</div>
+
+
+<script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const error = urlParams.get('status');
+    if (error== "unsuccessful"){
+    let errorString="Sorry, music already exists in playlist";
+    document.getElementById("responsemsg").innerText=errorString;
+
+    var element = document.getElementById("toast");
+    element.classList.add("toast-error");
+
+    }
+    else if(error=="successful"){
+        let errorString="Music has been added to playlist successfully";
+        document.getElementById("responsemsg").innerText=errorString;
+
+        var element = document.getElementById("toast");
+    element.classList.add("toast-primary");
+    }
+</script>
